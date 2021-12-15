@@ -31,4 +31,18 @@ from sklearn.datasets import load_diabetes
 以下の文はその他必要なライブラリを呼び出している
 """
 
+import pandas as pd
+import numpy as np
+from pandas import Series,DataFrame
+
+import matplotlib.pyplot as plt
+
+%matplotlib inline
+
+"""
+今データセットを呼び出した形になっています。
+次にそれを変数に入れます。
+"""
+
+diabetes = diabetes()
 
