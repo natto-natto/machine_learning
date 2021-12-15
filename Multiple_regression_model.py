@@ -44,5 +44,21 @@ import matplotlib.pyplot as plt
 次にそれを変数に入れます。
 """
 
-diabetes = diabetes()
+dataset = diabetes()
+
+"""
+上で定義したdatasetをprintを適用させると様々な情報が出てくる。
+しかし、よくわからないと感じると思うのでデータセットの説明が欲しいと感じる時があると思う
+そんなときはprint(dataset.DESCR)を使用するとよい
+また、よくわからないと感じたので可視化が有効である。
+ここでpandasのDataFrameを使用します
+"""
+
+#dataframeの引数にdataset.dataを入れる
+diabetes_dataframe = DataFrame(dataset.data)
+#上の文章だけだと何が何のデータを示しているのかわからない。そこでcolumnsを追加してあげる
+diabetes_dataframe.columns = dataset.feature_names
+
+#csvファイルを作りたい場合は.to_csv()を利用するとよい。(拡張子をcsvにすることに注意)
+diabetes_dataframe.to_csv("diabetes.csv")
 
