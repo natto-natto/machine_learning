@@ -44,7 +44,7 @@ import matplotlib.pyplot as plt
 次にそれを変数に入れます。
 """
 
-dataset = diabetes()
+dataset = load_diabetes()
 
 """
 上で定義したdatasetをprintを適用させると様々な情報が出てくる。
@@ -67,9 +67,16 @@ diabetes_dataframe.to_csv("diabetes.csv")
 #csvの中身は以下の文で見ることが可能
 diabetes_dataframe.head()
 
-
-x_train, x_test, t_train, t_test = train_test_split(x, t, test_size=0.3, random_state=0)
 from sklearn.model_selection import train_test_split
+x = dataset.data
+t = dataset.target
+x_train, x_test, t_train, t_test = train_test_split(x, t, test_size=0.3, random_state=0)
+
 from sklearn.linear_model import LinearRegression
 # モデルの定義
 reg_model = LinearRegression()
+reg_model.fit(x_train, t_train)
+# 訓練後のパラメータ w
+reg_model.coef_
+# 精度の検証
+reg_model.score(x_train, t_train)
