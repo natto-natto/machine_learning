@@ -18,7 +18,7 @@ step1:データセットの準備
 2,ダウンロードすることで使えるサイズの大きいデータ(Real World Datasets)
 である。
 今回はToy Datasetsの「load_diabetes()」を使用する。
-(load_boston()で勉強したため別のデータセットを使用する)
+(load_boston()は1.2で削除されるため非推奨)
 さて、実際にコードを書いていく
 load_diabetes()のインポートは次の文で可能
 """
@@ -58,7 +58,18 @@ dataset = diabetes()
 diabetes_dataframe = DataFrame(dataset.data)
 #上の文章だけだと何が何のデータを示しているのかわからない。そこでcolumnsを追加してあげる
 diabetes_dataframe.columns = dataset.feature_names
+#目的関数もここで追加するとよい
+diabetes_dataframe['Diabetes'] = DataFrame(dataset.target)
 
 #csvファイルを作りたい場合は.to_csv()を利用するとよい。(拡張子をcsvにすることに注意)
 diabetes_dataframe.to_csv("diabetes.csv")
 
+#csvの中身は以下の文で見ることが可能
+diabetes_dataframe.head()
+
+
+x_train, x_test, t_train, t_test = train_test_split(x, t, test_size=0.3, random_state=0)
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+# モデルの定義
+reg_model = LinearRegression()
